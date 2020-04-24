@@ -10,20 +10,8 @@ public class ParabolaMethod extends Method implements Solvable {
     }
 
     @Override
-    public double solve() {
+    public ResultEntry solve() {
 
-        return 0;
+        return null;
     }
-
-    @Override
-    public int getIterationCount() {
-        return 0;
-    }
-
-    @Override
-    public int getFunctionCalculationCount() {
-        return 0;
-    }
-
-
 }

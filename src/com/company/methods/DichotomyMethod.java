@@ -10,7 +10,7 @@ public class DichotomyMethod extends Method implements Solvable {
     }
 
     @Override
-    public double solve() {
+    public ResultEntry solve() {
         double gamma = eps / 3;
 
         while (!isSolved(a, b, eps)) {
@@ -28,17 +28,15 @@ public class DichotomyMethod extends Method implements Solvable {
                 a = x1;
             }
         }
-        return (a + b) / 2;
-    }
 
-    @Override
-    public int getIterationCount() {
-        return iterations;
-    }
+        double solution = (a + b) / 2;
 
-    @Override
-    public int getFunctionCalculationCount() {
-        return functionCalculations;
+        return new ResultEntry(
+                solution,
+                calculateFunc(solution),
+                iterations,
+                functionCalculations
+        );
     }
 
     private boolean isSolved(double a, double b, double eps) {

@@ -1,9 +1,7 @@
 package com.company;
 
+import com.company.methods.ResultEntry;
+
 public interface Solvable {
-    double solve();
-
-    int getIterationCount();
-
-    int getFunctionCalculationCount();
+    ResultEntry solve();
 }

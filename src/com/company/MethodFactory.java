@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.methods.DichotomyMethod;
 import com.company.methods.GoldenSectionMethod;
+import com.company.methods.LocalizationMethod;
 import com.company.methods.MethodEnum;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class MethodFactory {
         result.add(getMethod(MethodEnum.GOLDEN_SECTION, function, a, b, 0.01));
         result.add(getMethod(MethodEnum.GOLDEN_SECTION, function, a, b, 0.0001));
         result.add(getMethod(MethodEnum.GOLDEN_SECTION, function, a, b, 0.00000001));
+
+        result.add(new LocalizationMethod(function, 0.01, -1, 0.1));
 
         return result;
     }

@@ -10,18 +10,8 @@ public class FibonacciMethod extends Method implements Solvable {
     }
 
     @Override
-    public double solve() {
-        return 0;
-    }
-
-    @Override
-    public int getIterationCount() {
-        return iterations;
-    }
-
-    @Override
-    public int getFunctionCalculationCount() {
-        return functionCalculations;
+    public ResultEntry solve() {
+        return null;
     }
 
     private int calculateN(double x) {

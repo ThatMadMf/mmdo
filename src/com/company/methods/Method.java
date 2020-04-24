@@ -21,6 +21,10 @@ public class Method {
         functionCalculations = 0;
     }
 
+    public Method(Function func, double eps) {
+        this(func, -2, 0, eps);
+    }
+
     protected double calculateFunc(double x) {
         functionCalculations++;
         return func.calculate(x);

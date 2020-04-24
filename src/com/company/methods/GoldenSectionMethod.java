@@ -10,7 +10,7 @@ public class GoldenSectionMethod extends Method implements Solvable {
     }
 
     @Override
-    public double solve() {
+    public ResultEntry solve() {
         double u = calculateU(a, b);
         double v = a + b - u;
 
@@ -45,17 +45,14 @@ public class GoldenSectionMethod extends Method implements Solvable {
             iterations++;
         }
 
-        return (a + b) / 2;
-    }
+        double solution = (a + b) / 2;
 
-    @Override
-    public int getIterationCount() {
-        return iterations;
-    }
-
-    @Override
-    public int getFunctionCalculationCount() {
-        return functionCalculations;
+        return new ResultEntry(
+                solution,
+                calculateFunc(solution),
+                iterations,
+                functionCalculations
+        );
     }
 
     private double calculateU(double a, double b) {

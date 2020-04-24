@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.methods.ResultEntry;
+
 import java.util.List;
 
 
@@ -14,11 +16,11 @@ public class ConsoleRunner {
         for (Solvable solvable : methods) {
 
             System.out.println(solvable.getClass().getSimpleName());
-            double solution = solvable.solve();
-            System.out.println("x* = " + solution);
-            System.out.println("f* = " + function.calculate(solution));
-            System.out.println("Number of iterations = " + solvable.getIterationCount());
-            System.out.println("Number of function calls = " + solvable.getFunctionCalculationCount());
+            ResultEntry solution = solvable.solve();
+            System.out.println("x* = " + solution.getSolutionValue());
+            System.out.println("f* = " + solution.getSolutionFunctionValue());
+            System.out.println("Number of iterations = " + solution.getIterationCount());
+            System.out.println("Number of function calls = " + solution.getFunctionCalculationCount());
             System.out.println("");
         }
     }

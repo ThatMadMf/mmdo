@@ -1,9 +1,6 @@
 package com.company;
 
-import com.company.methods.DichotomyMethod;
-import com.company.methods.GoldenSectionMethod;
-import com.company.methods.LocalizationMethod;
-import com.company.methods.MethodEnum;
+import com.company.methods.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +13,8 @@ public class MethodFactory {
                 return new DichotomyMethod(func, a, b, eps);
             case GOLDEN_SECTION:
                 return new GoldenSectionMethod(func, a, b, eps);
+            case FIBONACCI:
+                return new FibonacciMethod(func, a, b, eps);
             default:
                 throw new IllegalArgumentException("Unsupported method");
         }
@@ -31,6 +30,10 @@ public class MethodFactory {
         result.add(getMethod(MethodEnum.GOLDEN_SECTION, function, a, b, 0.01));
         result.add(getMethod(MethodEnum.GOLDEN_SECTION, function, a, b, 0.0001));
         result.add(getMethod(MethodEnum.GOLDEN_SECTION, function, a, b, 0.00000001));
+
+        result.add(getMethod(MethodEnum.FIBONACCI, function, a, b, 0.01));
+        result.add(getMethod(MethodEnum.FIBONACCI, function, a, b, 0.0001));
+        result.add(getMethod(MethodEnum.FIBONACCI, function, a, b, 0.00000001));
 
         result.add(new LocalizationMethod(function, 0.01, -1, 0.1));
 

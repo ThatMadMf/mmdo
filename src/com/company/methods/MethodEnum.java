@@ -4,5 +4,6 @@ public enum MethodEnum {
     DICHOTOMY,
     GOLDEN_SECTION,
     LOCALIZATION,
-    FIBONACCI
+    FIBONACCI,
+    PARABOLA
 }

@@ -15,6 +15,8 @@ public class MethodFactory {
                 return new GoldenSectionMethod(func, a, b, eps);
             case FIBONACCI:
                 return new FibonacciMethod(func, a, b, eps);
+            case PARABOLA:
+                return new ParabolaMethod(func, a, b, eps);
             default:
                 throw new IllegalArgumentException("Unsupported method");
         }
@@ -34,6 +36,10 @@ public class MethodFactory {
         result.add(getMethod(MethodEnum.FIBONACCI, function, a, b, 0.01));
         result.add(getMethod(MethodEnum.FIBONACCI, function, a, b, 0.0001));
         result.add(getMethod(MethodEnum.FIBONACCI, function, a, b, 0.00000001));
+
+        result.add(getMethod(MethodEnum.PARABOLA, function, a, b, 0.01));
+        result.add(getMethod(MethodEnum.PARABOLA, function, a, b, 0.0001));
+        result.add(getMethod(MethodEnum.PARABOLA, function, a, b, 0.00000001));
 
         result.add(new LocalizationMethod(function, 0.01, -1, 0.1));
 

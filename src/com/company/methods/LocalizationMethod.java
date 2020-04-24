@@ -18,8 +18,8 @@ public class LocalizationMethod extends Method implements Solvable {
     @Override
     public ResultEntry solve() {
         double f1 = calculateFunc(x0);
-        double f2 = 0;
-        double x2 = 0;
+        double f2;
+        double x2;
 
         do {
             h /= 2;
@@ -47,8 +47,6 @@ public class LocalizationMethod extends Method implements Solvable {
                 iterations++;
             }
 
-            double a = 0;
-            double b = 0;
             if(h > 0) {
 
                 a = x1 - h;
@@ -70,4 +68,10 @@ public class LocalizationMethod extends Method implements Solvable {
             );
         }
     }
+
+    @Override
+    public double getEpsilon() {
+        return getEps();
+    }
+
 }

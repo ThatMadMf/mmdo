@@ -11,13 +11,13 @@ public class DichotomyMethod extends Method implements Solvable {
 
     @Override
     public ResultEntry solve() {
-        double gamma = eps / 3;
+        double delta = eps / 3;
 
         while (!isSolved(a, b, eps)) {
             iterations++;
 
-            double x1 = (a + b - gamma) / 2;
-            double x2 = (a + b + gamma) / 2;
+            double x1 = (a + b - delta) / 2;
+            double x2 = (a + b + delta) / 2;
 
             double f1 = calculateFunc(x1);
             double f2 = calculateFunc(x2);
@@ -38,6 +38,12 @@ public class DichotomyMethod extends Method implements Solvable {
                 functionCalculations
         );
     }
+
+    @Override
+    public double getEpsilon() {
+        return getEps();
+    }
+
 
     private boolean isSolved(double a, double b, double eps) {
         return (b - a) < eps;

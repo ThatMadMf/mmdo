@@ -29,4 +29,8 @@ public class Method {
         functionCalculations++;
         return func.calculate(x);
     }
+
+    public double getEps() {
+        return eps;
+    }
 }

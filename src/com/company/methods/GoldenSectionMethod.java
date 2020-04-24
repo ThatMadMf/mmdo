@@ -55,6 +55,12 @@ public class GoldenSectionMethod extends Method implements Solvable {
         );
     }
 
+    @Override
+    public double getEpsilon() {
+        return getEps();
+    }
+
+
     private double calculateU(double a, double b) {
         return a + (3 - Math.sqrt(5)) / 2 * (b - a);
     }

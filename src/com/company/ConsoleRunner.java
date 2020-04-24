@@ -15,7 +15,7 @@ public class ConsoleRunner {
 
         for (Solvable solvable : methods) {
 
-            System.out.println(solvable.getClass().getSimpleName());
+            System.out.println(solvable.getClass().getSimpleName() + "\twith epsilon:" + solvable.getEpsilon());
             ResultEntry solution = solvable.solve();
             System.out.println("x* = " + solution.getSolutionValue());
             System.out.println("f* = " + solution.getSolutionFunctionValue());

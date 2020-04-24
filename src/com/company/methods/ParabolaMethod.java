@@ -32,7 +32,7 @@ public class ParabolaMethod extends Method implements Solvable {
         double x = calculateX(x0, x1, x2, f0, f1, f2);
         double fx = calculateFunc(x);
 
-        while (isNotSolved(x, x1, x2)) {
+        while (isSolved(x, x1, x2)) {
             double x3 = 0;
             double f3 = 0;
 
@@ -76,10 +76,13 @@ public class ParabolaMethod extends Method implements Solvable {
         );
     }
 
-    private boolean isNotSolved(double x, double x1, double x2) {
-        boolean part1 = abs(x1 - x) >= eps;
-        boolean part2 = abs(x2 - x) >= eps;
-        return part1 && part2;
+    @Override
+    public double getEpsilon() {
+        return getEps();
+    }
+
+    private boolean isSolved(double x, double x1, double x2) {
+        return abs(x1 - x) >= eps && abs(x2 - x) >= eps;
     }
 
     private double calculateX(double x0, double x1, double x2, double f0, double f1, double f2) {

@@ -65,6 +65,12 @@ public class FibonacciMethod extends Method implements Solvable {
         );
     }
 
+    @Override
+    public double getEpsilon() {
+        return getEps();
+    }
+
+
     private boolean IsValidN() {
         return (b - a) / calculateFibonacci(n + 2) < eps;
     }

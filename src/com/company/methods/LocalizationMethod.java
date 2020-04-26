@@ -1,13 +1,15 @@
+
 package com.company.methods;
 
 import com.company.Function;
-import com.company.PreciseSolutionFailedException;
-import com.company.Solvable;
 
-public class LocalizationMethod extends Method implements Solvable {
+import static java.lang.StrictMath.abs;
+
+public class LocalizationMethod extends Method {
 
     private double x0;
     private double h;
+    private Triple triple;
 
     public LocalizationMethod(Function func, double eps, double x0, double h) {
         super(func, eps);
@@ -15,14 +17,14 @@ public class LocalizationMethod extends Method implements Solvable {
         this.h = h;
     }
 
-    @Override
     public ResultEntry solve() {
         double f1 = calculateFunc(x0);
-        double f2;
         double x2;
+        double f2;
 
         do {
             h /= 2;
+
             x2 = x0 + h;
             f2 = calculateFunc(x2);
 
@@ -33,33 +35,39 @@ public class LocalizationMethod extends Method implements Solvable {
             }
 
             iterations++;
-        } while (f1 < f2 || Math.abs(h) > eps);
+        } while (!(f1 > f2 || abs(h) < eps));
 
-        if(Math.abs(h) > eps) {
-            double x1 = 0;
+        double x1;
 
-            while (f1 > f2) {
-                x1 = x2;
+        do {
+            x1 = x2;
+            f1 = f2;
 
-                x2 = x1 + h;
-                f2 = calculateFunc(x2);
+            x2 = x1 + h;
+            f2 = calculateFunc(x2);
 
-                iterations++;
-            }
+            iterations++;
+        } while (!(f1 < f2));
 
-            if(h > 0) {
+        double a;
+        double b;
 
-                a = x1 - h;
-                b = x2;
-            } else {
+        if (h > 0) {
 
-                a = x2;
-                b = x1 - h;
-            }
-
-            throw new PreciseSolutionFailedException("Failed to solve precisely", a, b);
+            a = x1 - h;
+            b = x2;
         } else {
 
+            a = x2;
+            b = x1 - h;
+        }
+
+        triple = new Triple(x0, x1, x2);
+
+        if (abs(h) > eps) {
+            System.out.println("a = " + a + "\tb = " + b + "\n");
+            return null;
+        } else {
             return new ResultEntry(
                     x0,
                     calculateFunc(x0),
@@ -69,9 +77,7 @@ public class LocalizationMethod extends Method implements Solvable {
         }
     }
 
-    @Override
-    public double getEpsilon() {
-        return getEps();
+    public Triple getTriple() {
+        return triple;
     }
-
 }

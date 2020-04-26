@@ -40,9 +40,6 @@ public class MethodFactory {
         result.add(getMethod(MethodEnum.PARABOLA, function, a, b, 0.01));
         result.add(getMethod(MethodEnum.PARABOLA, function, a, b, 0.0001));
         result.add(getMethod(MethodEnum.PARABOLA, function, a, b, 0.00000001));
-
-        result.add(new LocalizationMethod(function, 0.01, -1, 0.1));
-
         return result;
     }
 }

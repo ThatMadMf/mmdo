@@ -21,9 +21,13 @@ public class ParabolaMethod extends Method implements Solvable {
     @Override
     public ResultEntry solve() {
 
-        double x0 = a;
-        double x1 = c;
-        double x2 = b;
+        LocalizationMethod localizationMethod = new LocalizationMethod(func, eps, c, 0.01);
+        localizationMethod.solve();
+        Triple triple = localizationMethod.getTriple();
+
+        double x0 = triple.getX0();
+        double x1 = triple.getX1();
+        double x2 = triple.getX2();
 
         double f0 = calculateFunc(x0);
         double f1 = calculateFunc(x1);

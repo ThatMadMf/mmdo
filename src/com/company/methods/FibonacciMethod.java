@@ -5,7 +5,7 @@ import com.company.Solvable;
 
 public class FibonacciMethod extends Method implements Solvable {
 
-    private final int n;
+    private int n;
 
     public FibonacciMethod(Function func, int a, int b, double eps, int n) {
         super(func, a, b, eps);
@@ -14,11 +14,14 @@ public class FibonacciMethod extends Method implements Solvable {
 
     public FibonacciMethod(Function func, int a, int b, double eps) {
         super(func, a, b, eps);
-        this.n = getValidN();
     }
 
     @Override
     public ResultEntry solve() {
+
+        if (n == 0 || !isValidN()) {
+            n = getValidN();
+        }
 
         double u = a + calculateFibonacci(n) / calculateFibonacci(n + 2) * (b - a);
         double v = a + b - u;
@@ -57,12 +60,7 @@ public class FibonacciMethod extends Method implements Solvable {
 
         double solution = (a + b) / 2;
 
-        return new ResultEntry(
-                solution,
-                calculateFunc(solution),
-                iterations,
-                functionCalculations
-        );
+        return generateResult(solution);
     }
 
     @Override
@@ -71,7 +69,7 @@ public class FibonacciMethod extends Method implements Solvable {
     }
 
 
-    private boolean IsValidN() {
+    private boolean isValidN() {
         return (b - a) / calculateFibonacci(n + 2) < eps;
     }
 

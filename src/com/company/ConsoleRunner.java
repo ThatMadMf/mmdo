@@ -14,15 +14,6 @@ public class ConsoleRunner {
 
             List<Solvable> methods = MethodFactory.getAllMethods(function, -2, 0);
 
-            var localization = new LocalizationMethod(function, 0.00000001, -1, 0.1);
-
-            System.out.println(localization.getClass().getSimpleName());
-
-            ResultEntry localisationSolution = localization.solve();
-            if(localisationSolution != null) {
-                System.out.println(localization.solve().getSolutionValue() + "\n");
-            }
-
             for (Solvable solvable : methods) {
 
                 System.out.println(solvable.getClass().getSimpleName() + "\twith epsilon:" + solvable.getEpsilon());

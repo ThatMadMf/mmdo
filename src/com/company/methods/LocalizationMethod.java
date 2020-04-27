@@ -37,37 +37,40 @@ public class LocalizationMethod extends Method {
             iterations++;
         } while (!(f1 > f2 || abs(h) < eps));
 
-        double x1;
-
-        do {
-            x1 = x2;
-            f1 = f2;
-
-            x2 = x1 + h;
-            f2 = calculateFunc(x2);
-
-            iterations++;
-        } while (!(f1 < f2));
-
-        double a;
-        double b;
-
-        if (h > 0) {
-
-            a = x1 - h;
-            b = x2;
-        } else {
-
-            a = x2;
-            b = x1 - h;
-        }
-
-        triple = new Triple(x0, x1, x2);
-
         if (abs(h) > eps) {
+
+            double x1;
+
+            do {
+                x1 = x2;
+                f1 = f2;
+
+                x2 = x1 + h;
+                f2 = calculateFunc(x2);
+
+                iterations++;
+            } while (!(f1 < f2));
+
+            double a;
+            double b;
+
+            if (h > 0) {
+
+                a = x1 - h;
+                b = x2;
+            } else {
+
+                a = x2;
+                b = x1 - h;
+            }
+
+            triple = new Triple(x2, x1, x0);
+
+
             System.out.println("a = " + a + "\tb = " + b + "\n");
             return null;
         } else {
+            triple = new Triple(x2, x2 + h, x0);
             return new ResultEntry(
                     x0,
                     calculateFunc(x0),

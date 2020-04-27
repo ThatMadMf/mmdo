@@ -47,12 +47,7 @@ public class GoldenSectionMethod extends Method implements Solvable {
 
         double solution = (a + b) / 2;
 
-        return new ResultEntry(
-                solution,
-                calculateFunc(solution),
-                iterations,
-                functionCalculations
-        );
+        return generateResult(solution);
     }
 
     @Override

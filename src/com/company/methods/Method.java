@@ -25,12 +25,30 @@ public class Method {
         this(func, -2, 0, eps);
     }
 
+    public double getEps() {
+        return eps;
+    }
+
+    protected double roundToEps(double n) {
+        double roundDigits = Math.pow(eps, -1);
+        return (double) Math.round(n * roundDigits) / roundDigits;
+    }
+
+    protected double calculateRound(double x) {
+        return roundToEps(calculateFunc(x));
+    }
+
     protected double calculateFunc(double x) {
         functionCalculations++;
         return func.calculate(x);
     }
 
-    public double getEps() {
-        return eps;
+    protected ResultEntry generateResult(double solution) {
+        return new ResultEntry(
+                roundToEps(solution),
+                calculateRound(roundToEps(solution)),
+                iterations,
+                functionCalculations
+        );
     }
 }
